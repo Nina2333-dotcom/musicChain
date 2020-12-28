@@ -1164,23 +1164,26 @@ $("#byMusicCopyright").click(function () {
     var _musicNa = $("#musicNa").val();
     var _cost = $("#_cost").val();
     var account = accounts[0];
-    contract.methods.byMusicCopyright(_fromAd, _toAd, _musicTokenId, _musicNa, _cost).send({from: account}).then(
-        function (result, error) {
-            if (result != null) {
-                console.log("result =>", result);
-                alert("success!");
-                $("#blockNumber").html(result.blockNumber);
-                $("#transactionHash").html(result.transactionHash);
-                $("#blockHash").html(result.blockHash);
-                $("#type").html(result.status);
-            }
-            ;
+    var _confirm = confirm("确定提交吗？");
+    if (_confirm == true) {
+        contract.methods.byMusicCopyright(_fromAd, _toAd, _musicTokenId, _musicNa, _cost).send({from: account}).then(
+            function (result, error) {
+                if (result != null) {
+                    console.log("result =>", result);
+                    alert("success!");
+                    $("#blockNumber").html(result.blockNumber);
+                    $("#transactionHash").html(result.transactionHash);
+                    $("#blockHash").html(result.blockHash);
+                    $("#type").html(result.status);
+                }
+                ;
 
-            if (error != null) {
-                console.log(error);
-            }
-            ;
-        });
+                if (error != null) {
+                    console.log(error);
+                }
+                ;
+            });
+    }
 });
 $("#ownerOf").click(function () {
     console.log("add");

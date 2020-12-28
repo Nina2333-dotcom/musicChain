@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test/2020/12/01</title>
+    <script type="text/javascript">
+        window.onload = function () {
+            //为id为btn01的按钮绑定一个单击响应函数
+            var btn01 = document.getElementById("btn01");
+            btn01.onclick = function () {
+                //查找bj节点
+                var bj = document.getElementById("bj");
+                //打印
+                //innerHTML可以获取元素内部html代码
+                alert(bj.innerHTML);
+            }
+
+            var btn02 = document.getElementById("btn02");
+            btn02.onclick = function () {
+                //getElementsByTagName返回一个类数字对象
+                var lis = document.getElementsByTagName("li");
+                var len = lis.length;
+                // alert(lis.length);
+
+                for (var i = 0; i < len; i++) {
+                    alert(lis[i].innerHTML);
+                }
+            }
+
+            var inputs = document.getElementsByName("gender");
+            for (var i = 0; i < inputs.length; i++) {
+                //对于自结束标签，innerHTML这个属性无意义
+                // alert(inputs[i].innerHTML);
+                //读取元素节点属性可以直接使用元素属性名，class属性不能使用这种方式，
+                //读取class属性时要使用className
+                alert(inputs[i].value);
+            }
+
+            var btn04 = document.getElementById("btn04");
+            btn04.onclick = function () {
+                var city = document.getElementById("city");
+                var lis = city.getElementsByTagName("li");
+                for (var i = 0; i < lis.length; i++) {
+                    alert(lis[i].innerHTML);
+                }
+            }
+        }
+
+
+    </script>
+</head>
+<body>
+<div>
+    <ul id="city">
+        <li id="bj">北京</li>
+        <li>上海</li>
+    </ul>
+
+    <div class="inner">
+        gender:
+        <input type="radio" name="gender" value="male"/>
+        male:
+        <input type="radio" name="gender" value="female"/>
+        female
+        <br>
+        name:
+        <input type="text" name="name" value="abcde"/>
+    </div>
+
+    <button id="btn01">查找id为bj</button>
+    <button id="btn02">查找类li为的数组</button>
+    <button id="btn04">查找city</button>
+</div>
+</body>
+</html>
