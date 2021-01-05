@@ -2,6 +2,13 @@ console.log("ERC720")
 
 let accounts = [];
 
+let musicSong = [
+    {
+        musicName: 'xxx',
+        musOwner: '0x9Dcf17A9E5fa89E27bf6bB4Fd3843230DF450D99',
+    }
+];
+// let musicOwner = [];
 if (typeof window.ethereum !== 'undefined') {
     console.log('MetaMask is installed!');
 }
@@ -9,9 +16,9 @@ if (typeof window.ethereum !== 'undefined') {
 console.log("isMetaMask：" + ethereum.isMetaMask)
 
 $(".enableEthereumButton").click(function () {
-        // alert("enableEthereumButton")
-        // ethereum.request({ method: 'eth_requestAccounts' });
-        getAccount()
+    // alert("enableEthereumButton")
+    // ethereum.request({ method: 'eth_requestAccounts' });
+    getAccount()
 
     }
 )
@@ -1024,6 +1031,13 @@ console.log("contract: ", contract);
 
 // 0x6F81f26Cd7505317a9776037d8487CaEe2A1C99E  Rinkeby
 
+// $("#musicSo")
+
+
+// $.each(musicSong,function(index,value){
+//     alert(i+"..."+value);
+//     $("#musicSo").html(value);
+// });
 
 $("#addPeople").click(function () {
     console.log("add");
@@ -1094,6 +1108,7 @@ $("#addMusic").click(function () {
     var _musHash = $("#musHash").val();  //web3.sha
     var hashOfHash = web3.utils.sha3(_musHash);
     var hashOfSign = web3.eth.sign(hashOfHash, account); // second argument is web3.sha3("xyz")
+
     contract.methods.addMusic(_musNa, _musIP, _musType, _musOwn, _cost, hashOfSign, hashOfHash).send({from: account}).then(
         function (result, error) {
             console.log("result =>", result);
@@ -1110,7 +1125,19 @@ $("#addMusic").click(function () {
             }
             ;
         });
+    musicSong.push(_musNa, _musOwn);
+    console.log(musicSong);
 });
+
+// var MarHtml = '';
+// $.each(musicSong, function(i, val) {
+//     MarHtml += '<div class="trait-list-item">' +
+//         '<p class="color-gray">HKL的特点</p>' +
+//         '<h1>' + musicSong[i].title + '</h1>' +
+//         '<p>' + musicSong[i].type + '</p>' +
+//         '</div>'
+// });
+// $('#traitListContent').append(MarHtml);
 
 $("#_changeCost").click(function () {
     var _changInputNa = $("#changInputNa").val();
